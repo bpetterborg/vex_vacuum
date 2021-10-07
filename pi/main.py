@@ -3,7 +3,7 @@
 #
 #   Vex Robotics Magnet Roomba Thing
 #   This is the higher-level control code for the vacuum.
-#   This manages mapping and GPS.
+#   This manages mapping, GPS, and image processing.
 #
 #
 #	TODO:
@@ -12,7 +12,7 @@
 # 		- Figure out serial connection to robot
 # 		- Test try-catch to fix (or at least find) serial errors
 # 		- Move all config variables to a .json or something
-#
+#		- venv
 #
 #
 #
