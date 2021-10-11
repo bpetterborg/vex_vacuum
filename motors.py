@@ -24,15 +24,15 @@ left_motor_duty_cycle = 0 		# default duty cycle for the pwm
 right_motor_duty_cycle = 0
 neutral_duty_cycle = 7
 
-pwm_frequency = 50				# frequency of the pwm (hz)
+PWM_FREQUENCY = 50				# frequency of the pwm (hz)
 
 # setup
 GPIO.setmode(GPIO.BCM)					# may need to set this to BOARD is stuff isn't working
 GPIO.setup(left_motor_pin, GPIO.OUT) 	# pin 16 is the left motor
 GPIO.setup(right_motor_pin, GPIO.OUT) 	# pin 20 is the right motor
 
-left_motor_pwm = GPIO.PWM(left_motor_pin, pwm_frequency).start(left_motor_duty_cycle)
-right_motor_pwm = GPIO.PWM(right_motor_pin, pwm_frequency).start(right_motor_duty_cycle)
+left_motor_pwm = GPIO.PWM(left_motor_pin, PWM_FREQUENCY).start(left_motor_duty_cycle)
+right_motor_pwm = GPIO.PWM(right_motor_pin, PWM_FREQUENCY).start(right_motor_duty_cycle)
 
 class Motors:
 
