@@ -11,14 +11,14 @@
 
 
 
-import RPi.GPIO2 as GPIO		# interface with the motors
+import RPi.GPIO2 as GPIO		# interface with the gpio/pwm
 
 left_motor_pin = 16				# which pins to use, may need to set later
 right_motor_pin = 20
 
 REVERSE_DUTY_CYCLE_LIMIT = 1	# duty cycle forward/reverse/neutral limits
-NEUTRAL_DUTY_CYCLE_LIMIT = 1.5	# maybe move this to a config file
-FORWARD_DUTY_CYCLE_LIMIT = 2
+NEUTRAL_DUTY_CYCLE_LIMIT = 1.5	# may need to be tweaked on a per-motor
+FORWARD_DUTY_CYCLE_LIMIT = 2	# maybe move this to a config file
 
 left_motor_duty_cycle = 0 		# default duty cycle for the pwm
 right_motor_duty_cycle = 0
@@ -77,6 +77,7 @@ class Motors:
 			# if not then go backward
 			elif REVERSE_DUTY_CYCLE_LIMIT < duty_cycle < NEUTRAL_DUTY_CYCLE_LIMIT:
 				left_motor_pwm(duty_cycle)
+				print(f'Spinning left motor reverse with duty cycle {duty_cycle}')
 
 			# if not that return an error
 			else: 
@@ -102,6 +103,7 @@ class Motors:
 			# if not then go backward
 			elif REVERSE_DUTY_CYCLE_LIMIT < duty_cycle < NEUTRAL_DUTY_CYCLE_LIMIT:
 				right_motor_pwm(duty_cycle)
+				print(f'Spinning right motor resverse with duty cycle {duty_cycle}')
 
 			# if not that return an error.
 			else: 
