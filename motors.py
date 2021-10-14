@@ -68,14 +68,14 @@ class Motors:
 		def spin(self, duty_cycle):
 			# spin the left motor
 			
-			# verify this works before, may need to edit values
+			# if this part doesn't work, probably use AND instead of double >
 			# go forward
-			if duty_cycle < FORWARD_DUTY_CYCLE_LIMIT > NEUTRAL_DUTY_CYCLE_LIMIT:
+			if FORWARD_DUTY_CYCLE_LIMIT > duty_cycle > NEUTRAL_DUTY_CYCLE_LIMIT:
 				left_motor_pwm(duty_cycle)
 				print(f'Spinning left motor forwards with duty cycle {duty_cycle}')
 
 			# if not then go backward
-			elif duty_cycle > REVERSE_DUTY_CYCLE_LIMIT < NEUTRAL_DUTY_CYCLE_LIMIT:
+			elif REVERSE_DUTY_CYCLE_LIMIT < duty_cycle < NEUTRAL_DUTY_CYCLE_LIMIT:
 				left_motor_pwm(duty_cycle)
 
 			# if not that return an error
@@ -95,12 +95,12 @@ class Motors:
 
 		def spin(self, duty_cycle):
 			# go forward
-			if duty_cycle < FORWARD_DUTY_CYCLE_LIMIT > NEUTRAL_DUTY_CYCLE_LIMIT:
+			if FORWARD_DUTY_CYCLE_LIMIT > duty_cycle > NEUTRAL_DUTY_CYCLE_LIMIT:
 				right_motor_pwm(duty_cycle)
 				print(f'Spinning right motor forwards with duty cycle {duty_cycle}')
 
 			# if not then go backward
-			elif duty_cycle > REVERSE_DUTY_CYCLE_LIMIT < NEUTRAL_DUTY_CYCLE_LIMIT:
+			elif REVERSE_DUTY_CYCLE_LIMIT < duty_cycle < NEUTRAL_DUTY_CYCLE_LIMIT:
 				right_motor_pwm(duty_cycle)
 
 			# if not that return an error.
