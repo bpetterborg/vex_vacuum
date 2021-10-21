@@ -1,9 +1,9 @@
 # file where i test everything
 
-import motors
+import pi_vex_393	# fix this
 import time
 
-motors = motors.Motors()
+motors = pi_vex_393.Motors()
 
 try:
 	motors.Left.spin(20)
