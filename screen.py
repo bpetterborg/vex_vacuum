@@ -6,9 +6,8 @@
 #	were used to help write this library.
 #	
 #	TODO:
-# 		- Get local IP address and display it on the screen.
-#	    - Fix imports
-#		- Test stuff
+# 		- Make aware of motor actions and errors automatically.
+#		- 
 #
 
 import busio								# use for I2C
@@ -16,29 +15,32 @@ from board import SCL, SDA					# also use for I2C i think
 from PIL import Image, ImageDraw, ImageFont	# working with fonts
 import adafruit_ssd1306						# PiOLED library
 import subprocess							# for getting IP, system load, etc.
-import time									# for sleep
+from time import sleep						# for sleep
 
 font = ImageFont.load_default() 			# set the font to use
 
+
 # initialise display
-display = adafruit_ssd1306.SSD1306_128_32(128, 32, busio.I2C(SCL, SDA))		# set the screen
+
+# set the screen
+display = adafruit_ssd1306.SSD1306_128_32(128, 32, busio.I2C(SCL, SDA))
 
 width = display.width
 height = display.height
 
 image = Image.new('1', (width, height))						# create a new image
 
-draw = ImageDraw.Draw(Image.new("1", (width, height)))		# can't wait to figure out what this does in an hour
+draw = ImageDraw.Draw(Image.new("1", (width, height)))
 draw.rectangle((0, 0, width, height), outline=0, fill=0)	# clear the screen
 
-# padding stuff
+# padding stuff (NOTE: Is there a way to do this more elegantly?)
 padding = -2
 top = padding
 botton = height - padding
-x = 0 	# move left to right keeping track of the current x position for drawing shapes
+x = 0 	# start at the left
 
 
-# main stuff
+# main important stuff
 class Screen:
 
 	def __init__(self):
@@ -77,6 +79,9 @@ class Screen:
 		draw.text((x, top + 25), text, font=font, fill=255)
 
 	while True:
+		# NOTE: might need to change these to separate funcs and have them run
+		# inside the main.py file
+		# NOTE: could also have them in the init thing
 		display.image(image)
 		display.show()
-		time.sleep(0.1)
+		sleep(0.1)
