@@ -3,28 +3,22 @@
 import pi_vex_393, screen	# fix this
 import time
 
-motors = pi_vex_393.Motors()
+motor = pi_vex_393.Motor()
 screen = screen.Screen()
 
-try:
-	screen.drawDebugLine('START')
-	screen.drawMessage('RUNNING')
 
-	motors.Left.spin(20)
-	motors.Right.spin(20)
-	screen.drawDebugLine('SPIN L AND R MTRS')
-	time.sleep(2000)
-
-	motors.stop()
-	screen.drawDebugLine('STOP MTRS')
-	screen.drawMessage('TASK DONE')
 	
+while True:
 
-except KeyboardInterrupt:
-	
-	print('STOPPING')
-	screen.drawMessage('KB INT')
-	screen.drawDebugLine('STOPPING')
+	screen.clearScreen()
+	screen.drawIP()
+	screen.drawSystemLoad()
+	screen.drawDebugLine(motor.currentStatus())
 
-	motors.stop()
-	motors.clean_gpio()
+	try:	
+		motor.spin('left', 50)
+		motor.spin('right', 50)
+
+	except KeyboardInterrupt:
+		motor.stop('left')
+		motor.stop('right')

@@ -18,12 +18,6 @@ import json
 
 import pi_vex_393, screen
 
+motor = pi_vex_393.Motor()
+screen = screen.Screen()
 
-
-while True:
-	screen.drawIP()
-	screen.drawSystemLoad()
-	screen.drawDebugLine('PWR ON')
-	screen.drawMessage('WELCOME')
-
-	
