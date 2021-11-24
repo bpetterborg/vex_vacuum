@@ -69,7 +69,6 @@ class Screen:
 
 		draw.text((x, top + 8), f'CPU {cpu_usage} MEM {memory_usage}', font=font, fill=255)
 
-
 	def drawDebugLine(self, text):
 		# draw debug message text
 		draw.text((x, top + 16), text, font=font, fill=255)
